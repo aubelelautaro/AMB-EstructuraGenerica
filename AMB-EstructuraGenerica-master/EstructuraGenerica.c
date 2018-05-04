@@ -130,6 +130,21 @@ int eGen_mostrarListadoConBorrados(eGenerica listado[],int limite)
     return retorno;
 }
 
+int eGen_validarAlta (eGenerica listado[],int limite)
+{
+    int indice;
+    indice = eGen_alta(listado,limite);
+
+    if (indice = -2)
+    {
+        printf("Lugar no encontrado\n");
+    }
+    else
+    {
+        printf("Registrado");
+    }
+    return indice;
+}
 int eGen_alta(eGenerica  listado[],int limite)
 {
     int retorno = -1;
@@ -155,22 +170,45 @@ int eGen_alta(eGenerica  listado[],int limite)
             //}
         }
     }
+    eGen_validarAlta
     return retorno;
 }
 int eGen_modificacion(eGenerica listado[] ,int limite, int id)
 {
-    int i;
-    int idCambio;
-    int rta;
+    int indice;
+    int retorno = -1;
 
-    printf("Ingrese id a modificar: ");
-    scanf("%d", &idCambio);
 
-    for (i=0;i<limite;i++)
+
+    if(limite>0 && listado != NULL)
     {
-        if(idGenerica[i]== idCambio)
-        {
+        retorno = -2;
+        printf("Ingrese id a modificar: ");
+        scanf("%d", &id);
 
+       indice = eGen_buscarPorId(listado,limite,id);
+
+        if(indice == -2)
+        {
+            printf("ID incorrecto");
+        }
+
+        else
+        {
+            retorno = 0;
+            printf("Ingrese nombre: ");
+            fflush(stdin);
+            gets(listado[indice].nombre);
+            printf("Ingrese password: ");
+            fflush(stdin);
+            gets(listado[indice].pass);
+            listado[indice].idGenerica = id;
+            listado[indice].estado = 1;
         }
     }
+    else
+    {
+        printf("No existen usuarios para modificar\n");
+    }
+    return retorno;
 }

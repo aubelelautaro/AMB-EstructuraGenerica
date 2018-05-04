@@ -1,14 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "EstructuraGenerica.h"
-#define CANTIDADU 100
-#define CANTIDADP 1000
+#define CANTIDADU 5
+#define CANTIDADP 20
 
 int main()
 {
-    eGenerica listadoGenerico[CANTIDADU];
-    eGen_init(listadoGenerico,CANTIDADU);
+    eGenerica listado[CANTIDADU];
+    eGen_init(listado,CANTIDADU);
     int opcion = 0;
+    int id;
     do
     {
         printf("1. Dar de alta un usuario\n");
@@ -28,7 +29,7 @@ int main()
                 eGen_alta(listadoGenerico, CANTIDADU);
                 break;
                 case 2:
-                eGen_modificacion(listadoGenerico, CANTIDADU);
+                eGen_modificacion(listadoGenerico, CANTIDADU, id);
                 break;
                 case 3:
                 printf( "\n \t muestro el array... esta vacio");
